@@ -40,15 +40,15 @@ def prepare_model():
     tokenizer.fit_on_texts(df['word_a'] + df['word_b'])
     return model,tokenizer 
 
-def predict(samples, model , tokenizer ):
+def predict(samples, model , tokenizer, treshold, amount):
     sample_tokens = [tokenize_inputs(lyrics[0], lyrics[1], tokenizer) for lyrics in samples]
     sample_tokens = tf.convert_to_tensor(sample_tokens)
     sample_pred = model.predict([sample_tokens[:, 0], sample_tokens[:, 1]])
     predictions = [round(pred[0], 4) for pred in sample_pred]
     list = []
     for i in range(len(samples)):
-        if(predictions[i] > 0.9):
+        if(predictions[i] > float(treshold)):
             list.append({'word' : samples[i][0], 'score' : predictions[i]})
     list_sorted = sorted(list, key=lambda p: p['score'])
-    return list_sorted[-20:] 
+    return list_sorted[-int(amount):] 
 

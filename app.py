@@ -3,6 +3,7 @@
 from flask import Flask, jsonify, request, abort, Response
 import json
 from flask_cors import CORS
+from score import prepare_model
 
 import enchant
 from nltk.corpus import cmudict
@@ -16,6 +17,7 @@ dict = enchant.Dict("en_US")
 
 # Create an instance of the CMU pronunciation dictionary
 d = cmudict.dict()
+model,tokenizer = prepare_model()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -25,9 +27,9 @@ def home():
         return jsonify({'data': data})
 
 
-@app.route('/rhymes/<word>', methods=['GET'])
-def disp(word):
-    rhymes = rhyme(word, d, dict)
+@app.route('/rhymes/<word>/<treshold>/<amount>', methods=['GET'])
+def disp(word,treshold, amount):
+    rhymes = rhyme(word, d, dict,model,tokenizer, treshold, amount)
     json_rhymes = jsonify(rhymes)
     return json_rhymes
 

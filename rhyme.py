@@ -1,8 +1,10 @@
 from score import prepare_model,predict
 
-def rhyme(wordToRhyme, d, dict):
+def rhyme(wordToRhyme, d, dict, model, tokenizer, treshold, amount):
     # Define the word for which you want to generate rhymes
     word = wordToRhyme
+    if dict.check(wordToRhyme) == False:
+        return []
 
     # Get the phoneme representation of the word
     phones = d[word][0]
@@ -25,9 +27,7 @@ def rhyme(wordToRhyme, d, dict):
     for rhyme in rhymes:
         list.append([rhyme, wordToRhyme])
 
-    model,tokenizer = prepare_model()
-
-    final = predict(list, model, tokenizer)
+    final = predict(list, model, tokenizer, treshold, amount)
     for item in final:
         item['score'] = str(item['score'])
     return final
