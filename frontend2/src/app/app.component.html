@@ -19,7 +19,7 @@
         <input type="range" min="0.1" max="1" value="0.9" step="0.1" class="slider" value="dog" [(ngModel)]="mythreshold">
         <!-- <input #threshold type="number"  value="90" class="slider"> -->
         <p>1.0</p>
-        <p class="currentvalue">{{mythreshold}}</p>
+        <input type="number" class="currentvalue" min="0.1" max="1" step="0.1" [(ngModel)]="mythreshold">
       </div>
     </div>
 
@@ -29,7 +29,7 @@
         <p>1</p>
         <input type="range" min="1" max="100" value="10" class="slider" [(ngModel)]="mynumberresults">
         <p>100</p>
-        <p class="currentvalue">{{mynumberresults}}</p>
+        <input type="number" class="currentvalue" [(ngModel)]="mynumberresults">
       </div>
     </div>
   </div>

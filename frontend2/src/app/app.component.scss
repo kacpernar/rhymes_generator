@@ -168,6 +168,8 @@
     .sliderslider{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     }
 
     .currentvalue{
@@ -175,6 +177,7 @@
         background-color: #125699;
         color: white;
         padding: 5px;
+        width: 40px;
     }
     
     .inputbox{
