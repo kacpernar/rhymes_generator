@@ -1,0 +1,67 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <h1>Rhymes generator</h1>
+</div>
+
+<div class="content" role="main">
+
+  <div class="sliderinfo">
+    <p>Word</p>
+    <input [(ngModel)]="myword" type="text" value="dog" class="inputbox" (keyup.enter)="getRhymes(myword, mythreshold, mynumberresults)"/>
+  </div>
+
+
+  <div class="slidecontainer">
+    <div class="sliderinfo">
+      <p>Threshold</p>
+      <div class="sliderslider">
+        <p>0.1</p>
+        <input type="range" min="0.1" max="1" value="0.9" step="0.1" class="slider" value="dog" [(ngModel)]="mythreshold">
+        <!-- <input #threshold type="number"  value="90" class="slider"> -->
+        <p>1.0</p>
+        <p class="currentvalue">{{mythreshold}}</p>
+      </div>
+    </div>
+
+    <div class="sliderinfo">
+      <p>Max number of results</p>
+      <div class="sliderslider">
+        <p>1</p>
+        <input type="range" min="1" max="100" value="10" class="slider" [(ngModel)]="mynumberresults">
+        <p>100</p>
+        <p class="currentvalue">{{mynumberresults}}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Resources -->
+
+  <div class="card-container">
+
+    <a class="card" target="_blank" rel="noopener" (click)="getRhymes(myword, mythreshold, mynumberresults)">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M14.73,13.31C15.52,12.24,16,10.93,16,9.5C16,5.91,13.09,3,9.5,3S3,5.91,3,9.5C3,13.09,5.91,16,9.5,16 c1.43,0,2.74-0.48,3.81-1.27L19.59,21L21,19.59L14.73,13.31z M9.5,14C7.01,14,5,11.99,5,9.5S7.01,5,9.5,5S14,7.01,14,9.5 S11.99,14,9.5,14z"/><polygon points="10.29,8.44 9.5,6 8.71,8.44 6.25,8.44 8.26,10.03 7.49,12.5 9.5,10.97 11.51,12.5 10.74,10.03 12.75,8.44"/></g></g></svg>
+      <span>Search for rhymes</span>
+    </a>
+
+  </div>
+
+
+  <!-- Terminal -->
+  <div *ngIf="results" class="terminal" [ngSwitch]="true"> 
+    <p *ngFor="let item of results">
+      {{item}}
+    </p>
+     
+  </div>
+
+
+
+  <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
+    <title>Gray Clouds Background</title>
+    <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
+  </svg>
+
+</div>
+
+

@@ -1,0 +1,6 @@
+Flask==2.2.2
+flask_cors==3.0.10
+nltk==3.8.1
+pandas==1.5.2
+pyenchant==3.2.2
+tensorflow==2.11.0
