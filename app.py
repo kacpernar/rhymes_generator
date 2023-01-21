@@ -10,7 +10,9 @@ import mimetypes
 import enchant
 from nltk.corpus import cmudict
 
-from rhyme import rhyme
+from rhyme import rhyme, polish_rhyme
+from rhymes import get_dictionary, rhymes_generator
+
 
 
 # creating a Flask app
@@ -25,6 +27,8 @@ dict = enchant.Dict("en_US")
 # Create an instance of the CMU pronunciation dictionary
 d = cmudict.dict()
 model,tokenizer = prepare_model()
+dicts = {}
+dicts['pl'] = get_dictionary('pl', False)
 
 @app.route('/')
 def home():
@@ -33,6 +37,12 @@ def home():
 @app.route('/rhymes/<word>/<treshold>/<amount>', methods=['GET'])
 def disp(word,treshold, amount):
     rhymes = rhyme(word, d, dict,model,tokenizer, treshold, amount)
+    json_rhymes = jsonify(rhymes)
+    return json_rhymes
+
+@app.route('/pl/<word>/<level>/<amount>', methods=['GET'])
+def disp(word, level, amount):
+    rhymes = polish_rhyme(dicts['pl'], word, level, amount)
     json_rhymes = jsonify(rhymes)
     return json_rhymes
 

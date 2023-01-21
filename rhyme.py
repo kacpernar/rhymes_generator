@@ -1,4 +1,12 @@
 from score import prepare_model,predict
+from rhymes import rhymes_generator
+
+def polish_rhyme(dict, word, level, amount):
+    list = rhymes_generator(dict, word, 1, True,
+                                      'pl')
+
+    list_sorted = sorted(list, key=lambda p: p['score'])
+    return list_sorted[-int(amount):] 
 
 def rhyme(wordToRhyme, d, dict, model, tokenizer, treshold, amount):
     # Define the word for which you want to generate rhymes
