@@ -6,6 +6,16 @@
 <div class="content" role="main">
 
   <div class="sliderinfo">
+    <p>Language</p>
+      <div class="sliderslider">
+        <input [(ngModel)]="lang" type="radio" id="english" name="lang" value="en" >
+          <label for="english"  style="margin-right: 20px;">English</label><br>
+        <input [(ngModel)]="lang" type="radio" id="polish" name="lang" value="pl" >
+          <label for="polish">Polski</label><br>
+      </div>
+  </div>
+
+  <div class="sliderinfo">
     <p>Word</p>
     <input [(ngModel)]="myword" type="text" value="dog" class="inputbox" (keyup.enter)="getRhymes(myword, mythreshold, mynumberresults)"/>
   </div>

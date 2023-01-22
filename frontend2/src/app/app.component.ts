@@ -19,18 +19,31 @@ export class AppComponent implements OnInit {
   mynumberresults = 15;
   results: string[] = [];
 
+  lang = '';
+  temp_lang = '';
+
   constructor(private http: HttpClient){
   };
 
   getRhymes(word:string, thres:number, numres:number){
+    this.temp_lang = this.lang;
     this.results = [];
-    this.http.get<any>(`${this.API_URL}/rhymes/${word}/${thres}/${numres}`).subscribe(res=>{
-      for(let item of res){
-        this.results.push("Word: " + item.word + ",  Score: " + item.score + "\n")
-      }
-    })
-    
+    if(this.lang == 'en')
+      this.http.get<any>(`${this.API_URL}/rhymes/${word}/${thres}/${numres}`).subscribe(res=>{
+        for(let item of res){
+          this.results.push(item.word + ", " + item.score)
+        }
+      })
+    else
+      this.http.get<any>(`${this.API_URL}/pl/${word}/${thres}/${numres}`).subscribe(res=>{
+        for(let item of res){
+          this.results.push(item.word + ", " + item.score)
+        }
+      })
+    this.lang = this.temp_lang;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.lang = 'en';
+  }
 }

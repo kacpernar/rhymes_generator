@@ -41,12 +41,12 @@ def disp(word,treshold, amount):
     return json_rhymes
 
 @app.route('/pl/<word>/<level>/<amount>', methods=['GET'])
-def disp(word, level, amount):
+def dispp(word, level, amount):
     rhymes = polish_rhyme(dicts['pl'], word, level, amount)
     json_rhymes = jsonify(rhymes)
     return json_rhymes
 
 
 if __name__ == '__main__':
-    #app.run(debug=True)
+    # app.run(debug=True)
     FlaskUI(app=app, width=1000, height=700, server="flask", port="5000").run() 

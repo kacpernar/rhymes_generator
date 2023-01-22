@@ -31,7 +31,7 @@ def get_cmp(language):
 def read_dictionary(language):
     if language not in ["en", "pl"]:
         return []
-    with open(language + ".dict") as f:
+    with open(language + ".dict", encoding="utf-8") as f:
         data =  re.split(" |\n", f.read())
 
     data = map(str.lower, data)

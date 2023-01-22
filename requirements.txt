@@ -4,3 +4,8 @@ nltk==3.8.1
 pandas==1.5.2
 pyenchant==3.2.2
 tensorflow==2.11.0
+flaskwebgui 
+pyphen 
+wordfreq
+spacy
+pyinstaller
