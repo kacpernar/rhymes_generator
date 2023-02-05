@@ -24,3 +24,4 @@ htmlcov/
 .coverage.*
 *,cover
 frontend
+pl.pickle
